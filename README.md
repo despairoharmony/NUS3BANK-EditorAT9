@@ -1,7 +1,11 @@
 # NUS3BANK Editor
+### TO USE THIS TOOL PROPELY YOU NEED at9tool.exe FROM SONY SDK
+### PLACE AT exeLib FOLDER
 _by jam1garner (1.0-1.7 then support) and BlueDan aka BDS aka DanSyor (1.7-now)_
 
-This is a GUI for Windows users to convert and import audio tracks into nus3bank files. Nus3bank files are basically a set of idsp audio tracks (for bgm, they most likely have only one track) that can feature a loop or not.
+_fork made by DespairOfHarmony_
+
+This is a GUI for Windows users to convert and import audio tracks into nus3bank files, made specially for Taiko no Tatsujin V Version for PS Vita. Nus3bank files are basically a set of at9 audio tracks (for bgm, they most likely have only one track) that can feature a loop or not.
 
 You need Python 2.7 installed to run it. Or since 2.20, Python 3.5! [Official Python website](https://www.python.org/)
 
@@ -11,6 +15,7 @@ Or since 2.10 you can use `NUS3BANK_Editor.bat`, that you can bind to be the def
 
 ### Credits:
 - Soneek who made tools essential for this
+- Alex Barney for VGAudio (https://github.com/Thealexbarney/VGAudio)
 - everyone involved with vgmstream
 - everyone involved with ffmpeg
 - everyone who tested this tool and gave feedback
