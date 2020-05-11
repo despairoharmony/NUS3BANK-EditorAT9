@@ -1,5 +1,5 @@
 # NUS3BANK Editor
-### TO USE THIS TOOL PROPELY YOU NEED at9tool.exe FROM SONY SDK
+### TO USE THIS TOOL PROPELY YOU NEED at9tool.exe FROM PS VITA SDK
 ### PLACE AT exeLib FOLDER
 _by jam1garner (1.0-1.7 then support) and BlueDan aka BDS aka DanSyor (1.7-now)_
 
@@ -15,7 +15,6 @@ Or since 2.10 you can use `NUS3BANK_Editor.bat`, that you can bind to be the def
 
 ### Credits:
 - Soneek who made tools essential for this
-- Alex Barney for VGAudio (https://github.com/Thealexbarney/VGAudio)
 - everyone involved with vgmstream
 - everyone involved with ffmpeg
 - everyone who tested this tool and gave feedback
