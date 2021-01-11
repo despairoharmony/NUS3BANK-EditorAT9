@@ -51,7 +51,8 @@ n3beDir = xis.decode(os.path.dirname(os.path.realpath(__file__)))
 
 # check at9tool
 at9check = os.path.join(os.path.join(n3beDir,u'exeLib'), u'at9tool.exe')
-original_sha = "866a23cc89c7d4bc9d4f90167be1ae68d6498a3703ddecc377da8f84840a2375"
+at9ver1 = "866a23cc89c7d4bc9d4f90167be1ae68d6498a3703ddecc377da8f84840a2375"
+at9ver2 = "75c8c5f8859b6ed57fb59ec18247a2f8d954228de4ac6bf8bef1bd2a3a9db8b8"
 
 with open(at9check) as check:
     # read contents of the file
@@ -60,7 +61,9 @@ with open(at9check) as check:
     sha_returned = hashlib.sha256(data).hexdigest()
     print (sha_returned)
 
-if original_sha == sha_returned:
+if at9ver1 == sha_returned:
+    print (u"at9tool verified.")
+elif at9ver2 == sha_returned:
     print (u"at9tool verified.")
 else:
     print (u"at9tool verification failed. Closing program.")
@@ -196,24 +199,24 @@ def convert2idsp(replacementSound):
     tsamp = getBatSetVal(cmd_output,u'tsamp')
     lstart = 0
     lend  = tsamp-1
-    # if rate > 44100:
-        # cmd = ffmpeg+' -i "'+os.path.join(folderName,'tmp.bak.wav')+'" -r:a 44100 "'+os.path.join(folderName,'tmp44100.wav')+'"'
-        # if subprocess.call(cmd):
-            # tkMessageBox.showinfo(appName,'Conversion to 44100Hz wav failed, some features might now work properly')
-        # else:
-            # copyfile(os.path.join(folderName,'tmp44100.wav'),os.path.join(folderName,'tmp.wav'))
-            # os.remove(os.path.join(folderName,'tmp44100.wav'))
-            # ext = '.wav'
-            # tsamp = tsamp*44100/rate
-            # lstart   = lstart  *44100/rate
-            # lend    = lend    *44100/rate
-            # rate = 44100
+    if rate != 0:
+        cmd = ffmpeg+' -i "'+os.path.join(folderName,'tmp.bak.wav')+'" -ar 48000 -filter:a "volume=0.8dB" "'+os.path.join(folderName,'tmp48000.wav')+'"'
+        if subprocess.call(cmd):
+            tkMessageBox.showinfo(appName,'Conversion to 48000Hz wav failed, some features might now work properly')
+        else:
+            copyfile(os.path.join(folderName,'tmp48000.wav'),os.path.join(folderName,'tmp.bak.wav'))
+            os.remove(os.path.join(folderName,'tmp48000.wav'))
+            ext = '.wav'
+            tsamp = tsamp*48000/rate
+            lstart   = lstart  *48000/rate
+            lend    = lend    *48000/rate
+            rate = 48000
     
     # making idsp
     idsp = os.path.join(folderName,u'new.at9')
     if os.path.isfile(idsp):
         os.remove(idsp)
-    cmd = at9 + u'  -e -br 192 ' + os.path.join(folderName,u'tmp.bak.wav') + u' ' + idsp
+    cmd = at9 + u'  -e -br 192 "' + os.path.join(folderName,u'tmp.bak.wav') + u'" "' + idsp+ u'"'
     print (cmd)
     if subprocess.call(xis.encode(cmd)):
         if os.path.isfile(idsp):
